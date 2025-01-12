@@ -1,0 +1,21 @@
+# Author: Sebos Technology
+# Date: January 12, 2025
+# Purpose: Systemd unit file to automate the syncing of stock predictor data
+#          to a remote server using rsync.
+
+[Unit]
+# Description of the service
+Description=Rsync stock predictor data to remote server
+
+# Ensure the service starts only after the network is available
+After=network.target
+
+[Service]
+# The user under which the service will run
+User=rsyncuser
+
+# The group under which the service will run
+Group=rsyncuser
+
+# The command to execute (path to the script for rsync operation)
+ExecStart=/usr/local/bin/rsync_data.sh
