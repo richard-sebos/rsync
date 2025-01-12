@@ -1,0 +1,20 @@
+# Author: Sebos Technology
+# Date: January 12, 2025
+# Purpose: Systemd timer file to schedule the syncing of stock predictor data 
+#          every 15 minutes using rsync.
+
+[Unit]
+# Description of the timer
+Description=Run rsync stock predictor data sync every 15 minutes
+
+[Timer]
+# Schedule the timer to trigger every 15 minutes
+# OnCalendar=*:0/15 indicates every 15 minutes past the hour
+OnCalendar=*:0/15
+
+# Ensure missed events (e.g., system downtime) are executed on the next boot
+Persistent=true
+
+[Install]
+# Ensure the timer is started when the system boots and the timers.target is reached
+WantedBy=timers.target
